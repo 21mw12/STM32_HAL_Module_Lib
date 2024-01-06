@@ -1,0 +1,2 @@
+# STM32_HAL_Module_Lib
+基于HAL库的STM32模块库项目
