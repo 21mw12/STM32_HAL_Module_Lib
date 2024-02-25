@@ -33,9 +33,13 @@ void OLED_Write(uint8_t ComType, uint8_t Data) {
 //	
 //	GPIO_SetBits(GPIOB, OLED_DC_Pin);
 #else
-	uint8_t writeBuf[2] = {ComType, Data};
-	
-	HAL_I2C_Master_Transmit(&hi2c1, (20<<1)|OLED_ADDRESS, writeBuf, 2, 1000);
+//	uint8_t writeBuf[2] = {ComType, Data};
+//	HAL_I2C_Master_Transmit(&hi2c1, (20<<1)|OLED_ADDRESS, writeBuf, 2, 1000);
+	HAL_I2C_Mem_Write(&hi2c1,
+										(20<<1)|OLED_ADDRESS,							// 从设备地址
+										ComType, I2C_MEMADD_SIZE_8BIT,		// 写入地址
+										&Data, 1,													// 写入数据
+										1000);
 #endif
 }
 
